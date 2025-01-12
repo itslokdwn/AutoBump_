@@ -1,20 +1,19 @@
 import discord
 from discord.ext import commands, tasks
-import asyncio
+import os
 
-# Bot setup with all intents enabled
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-# Replace these with your values
-CHANNEL_ID = 1327795692315480075  # The channel ID where you want to send bumps
-BUMP_INTERVAL = 40    # 2 hours
+CHANNEL_ID = int(os.getenv('CHANNEL_ID'))  # Get channel ID from environment
+BUMP_INTERVAL = 7200
 
 @bot.event
 async def on_ready():
-    print(f'Bot is logged in as {bot.user}')
+    print(f'Logged in as {bot.user}')
+    print('Bot is ready to bump!')
     auto_bump.start()
-    
+
 @tasks.loop(seconds=BUMP_INTERVAL)
 async def auto_bump():
     channel = bot.get_channel(CHANNEL_ID)
@@ -22,10 +21,8 @@ async def auto_bump():
         await channel.send("/bump")
         print(f"Bump sent in {channel.name}")
 
-# Add  ping command to see if bot is running 
 @bot.command()
-async def status(ctx):
+async def ping(ctx):
     await ctx.send("Bot is running! Auto-bump is active.")
 
-# Run the bot
-bot.run('YOUR_BOT_TOKEN')
+bot.run(os.getenv('DISCORD_TOKEN'))  # Get token from environment
