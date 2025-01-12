@@ -19,7 +19,7 @@ async def on_ready():
 async def auto_bump():
     channel = bot.get_channel(CHANNEL_ID)
     if channel:
-        await channel.send("tucker is weird")
+        await channel.send("Tucker likes to eat daisy sour cream")
         print(f"Bump sent in {channel.name}")
 
 @bot.command()
