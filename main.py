@@ -5,7 +5,8 @@ import os
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-CHANNEL_ID = int(os.getenv('CHANNEL_ID'))  # Get channel ID from environment
+CHANNEL_ID = int(os.getenv('CHANNEL_ID'))  # This grabs the channelID from the env variable
+
 BUMP_INTERVAL = 40
 
 @bot.event
