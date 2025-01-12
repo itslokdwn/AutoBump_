@@ -8,7 +8,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 
 # Replace these with your values
 CHANNEL_ID = 1327795692315480075  # The channel ID where you want to send bumps
-BUMP_INTERVAL = 7200    # 2 hours
+BUMP_INTERVAL = 40    # 2 hours
 
 @bot.event
 async def on_ready():
